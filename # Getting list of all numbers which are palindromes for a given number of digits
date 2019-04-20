@@ -1,0 +1,34 @@
+from itertools import product
+
+def list_palindromes_number_of_digits(n):
+    if n > 1:
+        dummy_list = []
+        if n % 2 == 0:
+            for i in product(range(10), repeat=int(n/2)):
+                # print(i)
+                my_string = ''.join([str(j) for j in i])
+                # print(my_string)
+                other_half = my_string[::-1]
+                final = my_string + other_half
+                if final[0] == "0":
+                    continue
+                else:
+                    dummy_list.append(int(final))
+            return dummy_list
+
+        else:
+            for i in product(range(10), repeat=int((n+1)/2)):
+                my_string = ''.join(str(j) for j in i)
+                other_half = my_string[1::-1]
+                final = my_string+other_half
+                if final[0] == "0":
+                    continue
+                else:
+                    dummy_list.append(int(final))
+            return dummy_list
+
+    else:
+        print("The number of digits in a palindrome should be greater than 1")
+
+
+print(list_palindromes_number_of_digits(17))
