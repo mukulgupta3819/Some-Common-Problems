@@ -1,0 +1,22 @@
+def get_factors(number):
+
+    to_check_till = int(number/2)
+    listy = []
+    for k in range(2,to_check_till+1):
+        if number != 1:
+            while number%k==0:
+                listy.append(k)
+                number = int(number/k)
+        else:
+            break
+
+    final_list = []
+    for i in range(1,len(listy)+1):
+        my_combo_list = list(set(itertools.combinations(listy, i)))
+        for m in my_combo_list:
+            product = functools.reduce(mul,m)
+            final_list.append(product)
+    final_list.sort()
+    return final_list
+
+print(get_factors(500000))
